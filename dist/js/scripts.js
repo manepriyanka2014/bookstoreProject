@@ -37873,36 +37873,103 @@ angular.module('bookstoreproject', [
     function($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'views/home.html',
-                controller: 'HomeCtrl'
+                controller: 'dashboardCtrl',
+                templateUrl: 'views/dashboard.html'
             })
-            .when('/booklist/:bookname', {
-                templateUrl: 'booklist/booklist.html',
-                controller: 'booklistController'
-            }).otherwise({
-                redirectTo: "/"
-            });
-}
+//             .when('/booklist/:bookname', {
+//                 templateUrl: 'booklist/booklist.html',
+//                 controller: 'booklistController'
+//             }).otherwise({
+//                 redirectTo: "/"
+//             });
+ }
 ])
-// angular.module('bookstoreproject')
-// .controller('HomeCtrl',['$scope',
-// function($scope){
-//     $scope.name= 'Priya'
-// }
-// ])
+// (  
+//     function() {
 
-angular.module('bookstoreproject').controller("HomeCtrl", function($scope, $http) {
-        // $scope.name = 'Priyanka';
-        $scope.getAllBookDetails=function() {
-            $http({
-                method : 'GET',
-                url : 'http://localhost:8080/book-store/book'
-            }).then(function successCallback(response) {
-                $scope.customers = response;
-            }, function errorCallback(response) {
-                console.log(response.statusText);//http status code response
-            });
-        }  
+//      angular.module('bookstoreproject')
+//     .component('dashComp', { 
+//         controller: 'dashboardCtrl',
+//         templateUrl: 'templates/views/dashboard.html'
+//     });
+//     }   
+// )();
+(
+    function(){
+        "use strict"
+        angular.module("bookstoreproject")
+        .component('dashboardComp', {
+            controller:'dashboardCtrl',
+            templateUrl:'/views/dashboard.html'
+        })
+    }
+)
+// (
+//     function(){
+//         angular.module('bookstoreproject')
+//         .controller('dashboardCtrl', dashboardCtrl)
+//         dashboardCtrl.$inject = ["$scope"]
+
+//         function dashboardCtrl($scope){
+//                            console.log("inside get all book");
+//                 $http({
+//                     method : 'GET',
+//                     url : 'http://localhost:8080/book-store/book'
+//                 }).then(function successCallback(response) {
+    
+//                     console.log("response from backend---------->", response);
+//                     $scope.customers = response.data;
+//                 }, function errorCallback(response) {
+//                     console.log(response.statusText);//http status code response
+//                 });
+//             }  
+    
+//     }
+// )();
+angular.module('bookstoreproject').controller("dashboardCtrl", function($scope, $http) {
+   var ctrl=this;
+   ctrl.$onInit= function(){
+       console.log("inside OnInit");
+       getAllBookDetails();
+   }
+   
+    $scope.getAllBookDetails=function() {
+        console.log("inside get all book");
+        $http({
+            method : 'GET',
+            url : 'http://localhost:8080/book-store/book'
+        }).then(function successCallback(response) {
+
+            console.log("response from backend---------->", response);
+            $scope.books = response.data;
+        }, function errorCallback(response) {
+            console.log(response.statusText);//http status code response
+        });
+    }  
 });
+// // angular.module('bookstoreproject')
+// // .controller('HomeCtrl',['$scope',
+// // function($scope){
+// //     $scope.name= 'Priya'
+// // }
+// // ])
+
+// angular.module('bookstoreproject').controller("HomeCtrl", ['$scope','$http',function($scope, $http) {
+//         // $scope.name = 'Priyanka';
+
+//         $scope.getAllBookDetails=function() {
+//             console.log("inside get all book");
+//             $http({
+//                 method : 'GET',
+//                 url : 'http://localhost:8080/book-store/book'
+//             }).then(function successCallback(response) {
+
+//                 console.log("response from backend---------->", response);
+//                 $scope.customer = response.data;
+//             }, function errorCallback(response) {
+//                 console.log(response.statusText);//http status code response
+//             });
+//         }  
+// }]);
 // HomeCtrl.$inject = ['$scope']
 

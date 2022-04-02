@@ -6,14 +6,14 @@ angular.module('bookstoreproject', [
     function($routeProvider) {
         $routeProvider
             .when('/', {
-                templateUrl: 'views/home.html',
-                controller: 'HomeCtrl'
+                controller: 'dashboardCtrl',
+                templateUrl: 'views/dashboard.html'
             })
-            .when('/booklist/:bookname', {
-                templateUrl: 'booklist/booklist.html',
-                controller: 'booklistController'
-            }).otherwise({
-                redirectTo: "/"
-            });
-}
+//             .when('/booklist/:bookname', {
+//                 templateUrl: 'booklist/booklist.html',
+//                 controller: 'booklistController'
+//             }).otherwise({
+//                 redirectTo: "/"
+//             });
+ }
 ])

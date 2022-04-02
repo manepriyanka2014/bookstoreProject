@@ -1,13 +1,14 @@
-{
-    function() {
+// ( 
+//     function() {
    
-        angular.module('bookstoreproject').component("booklistComponents",(  
-            'booklistComponents',{  
-            controller: 'booklistController',
-            templateUrl: '/booklist/booklistView.html'
+//         angular.module('bookstoreproject')
+            //.component("booklistComponent",(  
+//             'booklistComponents',{  
+//             controller: 'booklistController',
+//             templateUrl: '/booklist/booklistView.html'
            
-           }
-        )
-    }
+         
+//         }
+//     }
     
-}();
+// )();
