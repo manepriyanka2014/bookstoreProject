@@ -37873,9 +37873,11 @@ angular.module('bookstoreproject', [
     function($routeProvider) {
         $routeProvider
             .when('/', {
-                controller: 'dashboardCtrl',
-                templateUrl: 'views/dashboard.html'
+               template: '<book-list></book-list>'
             })
+
+
+            
 //             .when('/booklist/:bookname', {
 //                 templateUrl: 'booklist/booklist.html',
 //                 controller: 'booklistController'
@@ -37884,6 +37886,106 @@ angular.module('bookstoreproject', [
 //             });
  }
 ])
+function cartCtrl($http) {
+    ctrl = this;
+    ctrl.cartList = [];
+    ctrl.customerDetail = {};
+    ctrl.$onInit = function () {
+        console.log("inside on init");
+        ctrl.cartList = JSON.parse(localStorage.getItem('cartList') || '{}');
+        ctrl.customerDetails.cartBook = ctrl.cartList;
+    }
+
+    ctrl.addressTypeSave = function (customerDetails) {
+        console.log("inside addressTypeSave");
+        $http({
+            method: 'POST',
+            url: 'http://localhost:8080/book-store/cart',
+            data: customerDetails
+        }).then(function successCallback(response) {
+
+            console.log("response from backend---------->", response);
+
+        }, function errorCallback(response) {
+            console.log(response.statusText);//http status code response
+        });
+    }
+
+}
+
+function removeOneBook(bookId) {
+    console.log("inside removeOneBook");
+    $http({
+        method: 'DELETE',
+        url: 'http://localhost:8080/book-store/cart/' + bookId
+    }).then(function successCallback(response) {
+
+        if (ctrl.cartList != null && ctrl.cartList.length > 0) {
+            // iterate over cartlist
+            ctrl.cartList.forEach((book, index) => {
+                // remove the entry from carlist which is deleted from table
+                if (book.bookId === bookId) {
+                    ctrl.cartList.splice(index, 1);
+                }
+            });
+            // update the localstorage which dose not have deleted book entry
+            localStorage.setItem('cartList', JSON.stringify(this.cartList));
+        }
+
+    }, function errorCallback(response) {
+        console.log(response.statusText);//http status code response
+    });
+
+}
+
+
+angular.module('bookstoreproject') .component("cartList"
+, {
+        templateUrl: 'views/cart.html',
+        controller: cartCtrl,
+        controllerAs: 'ctrl'
+    });
+function dashboardCtrl($http) {
+  ctrl = this;
+  ctrl.$onInit = function () {
+    console.log("inside on init");
+    getAllBookDetails();
+  };
+  ctrl.onClickAddToCart = function (book) {
+    let cartList = [];
+    cartList = JSON.parse(localStorage.getItem("cartList") || "{}");
+    if (cartList != null && cartList.length > 0) {
+      cartList.push(book);
+    } else {
+      cartList = [book]; //to strore first book
+    }
+
+    localStorage.setItem("cartList", JSON.stringify(cartList));
+  };
+
+  function getAllBookDetails() {
+    console.log("inside get all book");
+    $http({
+      method: "GET",
+      url: "http://localhost:8080/book-store/book",
+    }).then(
+      function successCallback(response) {
+        console.log("response from backend---------->", response);
+        ctrl.books = response.data;
+      },
+      function errorCallback(response) {
+        console.log(response.statusText); //http status code response
+      }
+    );
+  }
+}
+
+angular.module("bookstoreproject").component("bookList", {
+  templateUrl: "views/dashboard.html",
+  controller: dashboardCtrl,
+  controllerAs: "ctrl",
+});
+
 // (  
 //     function() {
 
@@ -37894,59 +37996,59 @@ angular.module('bookstoreproject', [
 //     });
 //     }   
 // )();
-(
-    function(){
-        "use strict"
-        angular.module("bookstoreproject")
-        .component('dashboardComp', {
-            controller:'dashboardCtrl',
-            templateUrl:'/views/dashboard.html'
-        })
-    }
-)
 // (
 //     function(){
-//         angular.module('bookstoreproject')
-//         .controller('dashboardCtrl', dashboardCtrl)
-//         dashboardCtrl.$inject = ["$scope"]
-
-//         function dashboardCtrl($scope){
-//                            console.log("inside get all book");
-//                 $http({
-//                     method : 'GET',
-//                     url : 'http://localhost:8080/book-store/book'
-//                 }).then(function successCallback(response) {
-    
-//                     console.log("response from backend---------->", response);
-//                     $scope.customers = response.data;
-//                 }, function errorCallback(response) {
-//                     console.log(response.statusText);//http status code response
-//                 });
-//             }  
-    
+//         "use strict"
+//         angular.module("bookstoreproject")
+//         .component('dashboardComp', {
+//             controller:'dashboardCtrl',
+//             templateUrl:'/views/dashboard.html'
+//         })
 //     }
-// )();
-angular.module('bookstoreproject').controller("dashboardCtrl", function($scope, $http) {
-   var ctrl=this;
-   ctrl.$onInit= function(){
-       console.log("inside OnInit");
-       getAllBookDetails();
-   }
-   
-    $scope.getAllBookDetails=function() {
-        console.log("inside get all book");
-        $http({
-            method : 'GET',
-            url : 'http://localhost:8080/book-store/book'
-        }).then(function successCallback(response) {
+// )
+// // (
+// //     function(){
+// //         angular.module('bookstoreproject')
+// //         .controller('dashboardCtrl', dashboardCtrl)
+// //         dashboardCtrl.$inject = ["$scope"]
 
-            console.log("response from backend---------->", response);
-            $scope.books = response.data;
-        }, function errorCallback(response) {
-            console.log(response.statusText);//http status code response
-        });
-    }  
-});
+// //         function dashboardCtrl($scope){
+// //                            console.log("inside get all book");
+// //                 $http({
+// //                     method : 'GET',
+// //                     url : 'http://localhost:8080/book-store/book'
+// //                 }).then(function successCallback(response) {
+    
+// //                     console.log("response from backend---------->", response);
+// //                     $scope.customers = response.data;
+// //                 }, function errorCallback(response) {
+// //                     console.log(response.statusText);//http status code response
+// //                 });
+// //             }  
+    
+// //     }
+// // )();
+// angular.module('bookstoreproject').controller("dashboardCtrl", function($scope, $http) {
+//    var ctrl=this;
+//    ctrl.$onInit= function(){
+//        console.log("inside OnInit");
+//        getAllBookDetails();
+//    }
+   
+//     $scope.getAllBookDetails=function() {
+//         console.log("inside get all book");
+//         $http({
+//             method : 'GET',
+//             url : 'http://localhost:8080/book-store/book'
+//         }).then(function successCallback(response) {
+
+//             console.log("response from backend---------->", response);
+//             $scope.books = response.data;
+//         }, function errorCallback(response) {
+//             console.log(response.statusText);//http status code response
+//         });
+//     }  
+// });
 // // angular.module('bookstoreproject')
 // // .controller('HomeCtrl',['$scope',
 // // function($scope){

@@ -1,11 +1,17 @@
     <div>
-        
+       
         <span>Books</span>
-        <span > {{Books.length}}</span>
+        <span > {{ctrl.books.length}}</span>
     </div>
 </div>
-<div ng-repeat="book in books">
 <div class="card">
+<div ng-repeat="book in ctrl.books">
+
+    <!-- <div class="grid-container"></div>
+    <div class="alinebody">
+        <div class="body"> -->
+
+<!-- <div class="card"> -->
     <div class="book_image">
         <img src="{{book.bookImage}}" alt="book" class="book_img">
     </div>
@@ -20,7 +26,7 @@
         <div class="book_price">Rs.{{book.bookPrice}}</div>
     </div>
     <div class="bag-wishlist-row">
-        <button class="add-to-cart-button" ng-click="onClickAddToCart(book)">
+        <button class="add-to-cart-button" ng-click="ctrl.onClickAddToCart(book)">
             ADD TO CART
         </button>
         <button class="add-to-wishlist" ng-click="onClickAddToWishList()">

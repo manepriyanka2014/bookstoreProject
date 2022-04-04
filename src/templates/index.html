@@ -14,7 +14,7 @@
             </div>
             <span class="bookstore">Bookstore</span>
             <form>
-                <!-- <input ng-if="fullDisplay" ng-keyup="isSearch()" ng-model="bookName" class="search" type="text" placeholder="Search..." name="search"> -->
+                <!--  ng-keyup="isSearch()" ng-model="bookName" class="search" type="text" placeholder="Search..." name="search"> -->
                 <input *ngIf="fullDisplay" (keyup.enter)="isSearch()" [(ngModel)]="bookName" class="search" type="text" placeholder="Search..." name="search">
              <!-- <div ng-controller="myController">search:<input type="text" placeholder="search" ng-model="searchText"/> </div> -->
             </form>
@@ -28,6 +28,9 @@
     </div>
 
    <ng-view class="view"></ng-view> 
+   <div class="row" style="width:420px; left:20px; display: inline-block; margin-right: 40px;">
+    <div class="col s12 m4" style="width:100%;">
+
 </body>
 
 <script src="js/scripts.js"></script>

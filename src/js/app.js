@@ -6,9 +6,11 @@ angular.module('bookstoreproject', [
     function($routeProvider) {
         $routeProvider
             .when('/', {
-                controller: 'dashboardCtrl',
-                templateUrl: 'views/dashboard.html'
+               template: '<book-list></book-list>'
             })
+
+
+            
 //             .when('/booklist/:bookname', {
 //                 templateUrl: 'booklist/booklist.html',
 //                 controller: 'booklistController'
