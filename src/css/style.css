@@ -1,6 +1,12 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.element_center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .book_text {
     display : flex;
     padding-top: 29px;

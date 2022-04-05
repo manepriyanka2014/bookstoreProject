@@ -36,5 +36,5 @@ function dashboardCtrl($http) {
 angular.module("bookstoreproject").component("bookList", {
   templateUrl: "views/dashboard.html",
   controller: dashboardCtrl,
-  controllerAs: "ctrl",
+  controllerAs: "ctrl"
 });
