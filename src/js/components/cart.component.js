@@ -1,10 +1,12 @@
 function cartCtrl($http) {
     ctrl = this;
     ctrl.cartList = [];
-    ctrl.customerDetail = {};
+    ctrl.customerDetails = {cartBook:[]};
     ctrl.$onInit = function () {
+
         console.log("inside on init");
-        ctrl.cartList = JSON.parse(localStorage.getItem('cartList') || '{}');
+        ctrl.cartList = JSON.parse(localStorage.getItem('cartList') );
+        console.log(ctrl.cartList);
         ctrl.customerDetails.cartBook = ctrl.cartList;
     }
 
@@ -29,7 +31,7 @@ function removeOneBook(bookId) {
     console.log("inside removeOneBook");
     $http({
         method: 'DELETE',
-        url: 'http://localhost:8080/book-store/cart/' + bookId
+        url: 'http://localhost:8080/book-store/cart' + bookId
     }).then(function successCallback(response) {
 
         if (ctrl.cartList != null && ctrl.cartList.length > 0) {
@@ -51,8 +53,7 @@ function removeOneBook(bookId) {
 }
 
 
-angular.module('bookstoreproject') .component("cartList"
-, {
+angular.module('bookstoreproject') .component("cartList", {
         templateUrl: 'views/cart.html',
         controller: cartCtrl,
         controllerAs: 'ctrl'

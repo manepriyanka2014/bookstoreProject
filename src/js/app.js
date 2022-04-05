@@ -7,15 +7,11 @@ angular.module('bookstoreproject', [
         $routeProvider
             .when('/', {
                template: '<book-list></book-list>'
+            }).when('/cart',{
+                template: '<cart-list></cart-list>'
+            }).when('/order-greeting', {
+                template: '<order-greeting></order-greeting>'
             })
-
-
             
-//             .when('/booklist/:bookname', {
-//                 templateUrl: 'booklist/booklist.html',
-//                 controller: 'booklistController'
-//             }).otherwise({
-//                 redirectTo: "/"
-//             });
  }
 ])

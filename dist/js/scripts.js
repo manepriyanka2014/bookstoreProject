@@ -37874,25 +37874,23 @@ angular.module('bookstoreproject', [
         $routeProvider
             .when('/', {
                template: '<book-list></book-list>'
+            }).when('/cart',{
+                template: '<cart-list></cart-list>'
+            }).when('/order-greeting', {
+                template: '<order-greeting></order-greeting>'
             })
-
-
             
-//             .when('/booklist/:bookname', {
-//                 templateUrl: 'booklist/booklist.html',
-//                 controller: 'booklistController'
-//             }).otherwise({
-//                 redirectTo: "/"
-//             });
  }
 ])
 function cartCtrl($http) {
     ctrl = this;
     ctrl.cartList = [];
-    ctrl.customerDetail = {};
+    ctrl.customerDetails = {cartBook:[]};
     ctrl.$onInit = function () {
+
         console.log("inside on init");
-        ctrl.cartList = JSON.parse(localStorage.getItem('cartList') || '{}');
+        ctrl.cartList = JSON.parse(localStorage.getItem('cartList') );
+        console.log(ctrl.cartList);
         ctrl.customerDetails.cartBook = ctrl.cartList;
     }
 
@@ -37917,7 +37915,7 @@ function removeOneBook(bookId) {
     console.log("inside removeOneBook");
     $http({
         method: 'DELETE',
-        url: 'http://localhost:8080/book-store/cart/' + bookId
+        url: 'http://localhost:8080/book-store/cart' + bookId
     }).then(function successCallback(response) {
 
         if (ctrl.cartList != null && ctrl.cartList.length > 0) {
@@ -37939,8 +37937,7 @@ function removeOneBook(bookId) {
 }
 
 
-angular.module('bookstoreproject') .component("cartList"
-, {
+angular.module('bookstoreproject') .component("cartList", {
         templateUrl: 'views/cart.html',
         controller: cartCtrl,
         controllerAs: 'ctrl'
@@ -37984,4 +37981,39 @@ angular.module("bookstoreproject").component("bookList", {
   templateUrl: "views/dashboard.html",
   controller: dashboardCtrl,
   controllerAs: "ctrl"
+});
+
+function homeCtrl($location){
+    function redirectToCart(){
+        console.log('inside cart');
+        $location.path('/cart')
+        
+    }
+
+}
+
+
+angular.module('bookstoreproject') .component("home", {
+    templateUrl: 'views/index.html',
+    controller: homeCtrl,
+    controllerAs: 'ctrl'
+});
+function orderCtrl($location){
+    ctrl = this;
+    $location.path('/order-greeting')
+    ctrl.onClickClear() = function () {
+    
+    {
+      sessionStorage.clear();
+    }
+    ctrl.$onInit = function () {
+      console.log("inside order greeting page on init");
+    }
+    }
+}
+
+angular.module('bookstoreproject') .component("orderGreeting", {
+    templateUrl: 'views/order-greeting.html',
+    controller: orderCtrl,
+    controllerAs: 'ctrl'
 });

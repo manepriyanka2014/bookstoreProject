@@ -7,7 +7,7 @@
             ({{Carts.length}})</span> -->
     </div>
    
-    <div ng-repeat="let book in ctrl.cartList" class="card1">
+    <div ng-repeat="book in ctrl.cartList track by $index" class="card1">
         <div>
             <div>
                 <div class="book1">
