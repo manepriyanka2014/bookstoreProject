@@ -1,7 +1,7 @@
 function orderCtrl($location){
     ctrl = this;
-    $location.path('/order-greeting')
     ctrl.onClickClear() = function () {
+      $location.path('/order-greeting')
     
     {
       sessionStorage.clear();

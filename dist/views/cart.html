@@ -35,6 +35,7 @@
     
     <div class="buttons">
         <button ng-click="customerSection=true" class="place-order"> Place Order</button>
+        <div class="order" ng-click="redirectToOrder-greeting()" >
     </div>
 
    <div class="card2">
@@ -44,42 +45,42 @@
 
         <div class="input-row">
             <label class="label" >Full Name</label>
-            <input class="input3" ng-model="customerDetails.name" type="text" placeholder=" Enter your Full Name ">
+            <input class="input3" ng-model="ctrl.customerDetails.name" type="text" placeholder=" Enter your Full Name ">
         </div>
         <div class="input-row2">
             <label class="label">Email ID</label>
-            <input class="input3" ng-model="customerDetails.email" type="email" placeholder=" Enter your Email ID">
+            <input class="input3" ng-model="ctrl.customerDetails.email" type="email" placeholder=" Enter your Email ID">
         </div>
         <div class="input-row">
             <label class="label">Phone Number</label>
-            <input class="input3" ng-model ="customerDetails.phoneNumber" type="tel" placeholder=" Enter your Phone Number">
+            <input class="input3" ng-model ="ctrl.customerDetails.phoneNumber" type="tel" placeholder=" Enter your Phone Number">
         </div>
         <div class="input-row2">
             <label class="label">Pin code</label>
-            <input class="input3" ng-model ="customerDetails.pinCode" type="text" placeholder=" Enter your Pin Code">
+            <input class="input3" ng-model ="ctrl.customerDetails.pinCode" type="text" placeholder=" Enter your Pin Code">
         </div>
         <div class="input-row">
             <label class="label">Address</label>
-            <input class="input2" ng-model ="customerDetails.address" type="text" placeholder=" Enter your Address">
+            <input class="input2" ng-model ="ctrl.customerDetails.address" type="text" placeholder=" Enter your Address">
         </div>
         <div class="input-row">
             <label class="label">City</label>
-            <input class="input3" ng-model ="customerDetails.city" type="text" placeholder=" Enter your City ">
+            <input class="input3" ng-model ="ctrl.customerDetails.city" type="text" placeholder=" Enter your City ">
         </div>
         <div class="type"><span>Address Type</span></div>
         <div class="radio" >
-            <div class="radio1" ng-click="typeCall(1)" >
+            <div class="radio1" ng-click="ctrl.typeCall(1)" >
                 <input type="radio" checked=type[0] id="home" name="type" value="1">
                 <label class="homes" for="home">Home</label><br>
             </div>
-            <div class="radio2" ng-click="typeCall(2)">
+            <div class="radio2" ng-click="ctrl.typeCall(2)">
                 <input type="radio" x id="work" name="type" value="2">
                 <label class="homes" for="work">Work</label><br>
             </div>
-            <div class="radio2" ng-click="typeCall(3)">
+            <div class="radio2" ng-click="ctrl.typeCall(3)">
                 <input type="radio"  id="other" name="type" value="3">
                 <label class="homes" for="other">Other</label>
             </div>
         </div>
     </div>
-    <button ng-click="addressTypeSave()" class="continue"> continue</button>
+    <button ng-click="ctrl.addressTypeSave()" class="continue"> continue</button>
