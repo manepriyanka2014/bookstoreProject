@@ -8,37 +8,11 @@
     <script src="../js/components/home.component.js"></script>
 </head>
 <body>
-    <!-- //Header Search -->
-    <div class="header">
-        
-        <div class="row-head">
-            <div class="logo">
-                <img src="/src/assets/images/" class="image">
-            </div>
-            <span class="bookstore">Bookstore</span>
-            <form>
-                <!--  ng-keyup="isSearch()" ng-model="bookName" class="search" type="text" placeholder="Search..." name="search"> -->
-                <input *ngIf="fullDisplay" (keyup.enter)="isSearch()" [(ngModel)]="bookName" class="search" type="text" placeholder="Search..." name="search">
-             <!-- <div ng-controller="myController">search:<input type="text" placeholder="search" ng-model="searchText"/> </div> -->
-            </form>
-            <!-- <div ng-if="fullDisplay" class="cart"> -->
-                <div class="cart" ng-click="redirectToCart()" >
-                    <img src="" class="image">
-                shopping_cart 
-                 <span>Cart</span>
-                </div>                                                                                                                                                                                                                                                      
-        </div>
-    </div>
-
-   <ng-view class="view; element_center"></ng-view> 
-   <div class="row" style="width:420px; left:20px; display: inline-block; margin-right: 40px;">
+    
+    <home></home>
+    <div class="row" style="width:420px; left:20px; display: inline-block; margin-right: 40px;">
     <div class="col s12 m4" style="width:100%;">
 
 </body>
-<!-- <div class="partenfooter">
-    <div class="footer">
-        Copyright &copy; 2020 Bookstore Private Limited All Rights Reserved
-    </div>
-</div> -->
 
 </html>

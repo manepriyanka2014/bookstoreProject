@@ -1,41 +1,24 @@
-<div>
-
-    <span>Books</span>
-    <span> {{ctrl.books.length}}</span>
-</div>
-
-<!-- <div class="card"> -->
-<div style="display: flex; flex-wrap: wrap; flex-direction: row; width: 60%;">
-    <div ng-repeat="book in ctrl.books">
-
-        <!-- <div class="grid-container"></div>
-    <div class="alinebody">
-        <div class="body"> -->
-
-        <div class="card">
-            <div class="book_image">
-                
-                <img src="{{book.bookImage}}" alt="book" class="book_img">
-            </div>
-
-            <div class="book_name">
-                {{book.name}}
-            </div>
-            <div class="author_name">
-                {{book.bookAuthorName}}
-            </div>
-            <div class="price">
-                <div class="book_price">Rs.{{book.bookPrice}}</div>
-            </div>
-            <div class="bag-wishlist-row">
-                <button class="add-to-cart-button" ng-click="ctrl.onClickAddToCart(book)">
-                    ADD TO CART
-                </button>
-                <button class="add-to-wishlist" ng-click="ctrl.onClickAddToWishList()">
-
-                    WISHLIST
-                </button>
-            </div>
+<div class="header">
+        
+    <div class="row-head">
+        <div class="logo">
+            <img src="/src/assets/images/" class="image">
         </div>
+        <span class="bookstore">Bookstore</span>
+        <form>
+            <!--  ng-keyup="isSearch()" ng-model="bookName" class="search" type="text" placeholder="Search..." name="search"> -->
+            <input *ngIf="fullDisplay" (keyup.enter)="isSearch()" [(ngModel)]="bookName" class="search" type="text" placeholder="Search..." name="search">
+         <!-- <div ng-controller="myController">search:<input type="text" placeholder="search" ng-model="searchText"/> </div> -->
+        </form>
+        <!-- <div ng-if="fullDisplay" class="cart"> -->
+            <div class="cart" ng-click="ctrl.redirectToCart()" >
+                <img src="" class="image">
+            shopping_cart 
+             <span>Cart</span>
+            </div>                                                                                                                                                                                                                                                      
     </div>
 </div>
+
+<ng-view class="view; element_center"></ng-view> 
+<div class="row" style="width:420px; left:20px; display: inline-block; margin-right: 40px;">
+<div class="col s12 m4" style="width:100%;">

@@ -1,15 +1,19 @@
 function homeCtrl($location){
-    function redirectToCart(){
+    ctrl = this;
+    ctrl.$onInit =function(){
+        console.log("inside home init");
+    }
+    ctrl.redirectToCart = function (){
         console.log('inside cart');
         $location.path('/cart')
         
     }
 
+
 }
 
-
 angular.module('bookstoreproject') .component("home", {
-    templateUrl: 'views/index.html',
+    templateUrl: 'views/dashboard.html',
     controller: homeCtrl,
     controllerAs: 'ctrl'
 });

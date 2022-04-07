@@ -3,15 +3,6 @@
     margin-left: 200px;
 }
 
-.card1 {
-    margin-top: 10px;
-    width: 750px;
-    height: 150px;
-    background: rgb(255, 255, 255) 0% 0% no-repeat padding-box;
-    border: 1px solid #DCDCDC;
-    border-radius: 1px;
-}
-
 .home {
     font-family: Roboto;
     font-size: 16px;
@@ -96,6 +87,7 @@
 .info {
     margin-top: 20px;
     margin-left: 30px;
+    width: fit-content;
 }
 
 .buttons {
@@ -151,14 +143,6 @@
     cursor: pointer;
 }
 
-.card2 {
-    margin-top: 10px;
-    width: 750px;
-    height: 450px;
-    background: hsl(0, 0%, 100%) 0% 0% no-repeat padding-box;
-    border: 1px solid #DCDCDC;
-    border-radius: 1px;
-}
 
 .input-row {
     display: flex;
@@ -196,7 +180,7 @@
     border-style: solid;
 }
 
-.input3 {
+.cart-input {
     border-color: #b4b4b4;
     border-width: 1px;
     height: 45px;
@@ -205,6 +189,7 @@
     border-radius: 2px;
     opacity: 1;
     border-style: solid;
+    margin-right: 20px;
 }
 
 .type {
@@ -295,19 +280,15 @@ button{
     cursor: pointer;
 }
 
-.radio{
-    display: flex;
-}
 
 .continue{
-    margin-left: 550px;
-    
     color: #ffffff;
     background-color: #3371B5;
     border: none;
     height: 30px;
     width: 111px;
     border-radius: 2px;
+    margin: 10px;
 }
 .checkout{
     margin-left: 535px;
@@ -325,4 +306,36 @@ button{
     font-family: Roboto;
     font-weight: bold;
     color: rgb(155, 4, 4);
+}
+
+.items-end{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.space-between{
+    display: flex;
+    justify-content: space-between;
+}
+
+.row-view{
+    display: flex;
+    flex-direction: row;
+}
+
+.cart-card {
+    margin-top: 10px;
+    background: hsl(0, 0%, 100%) 0% 0% no-repeat padding-box;
+    border: 1px solid #DCDCDC;
+    border-radius: 1px;
+    padding: 15px;
+    width: 46em;
+}
+
+.margin-top-10{
+    margin-top: 10px;
+}
+
+.margin-right-30{
+ margin-right: 30px;
 }
